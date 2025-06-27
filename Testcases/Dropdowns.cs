@@ -30,6 +30,9 @@ public class Dropdowns
         Console.WriteLine("Interacting with multiple elements with the same locator:");
         
         var langOptions = await page.QuerySelectorAllAsync("select > option");
+        
+        Console.WriteLine("---------------------------------------------------------------------");
+        
         Console.WriteLine($"Total count of available languages is: {langOptions.Count}");
         
         Console.WriteLine("---------------------------------------------------------------------");

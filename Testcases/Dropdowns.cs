@@ -39,15 +39,15 @@ public class Dropdowns
 
         // Iterating over all the language options
         Console.WriteLine("Iterating over all the language options:");
-        
+
         foreach (var langOption in langOptions)
         {
             Console.WriteLine($"This is option: { await langOption.InnerTextAsync()}, which has the code: { await langOption.GetAttributeAsync("lang")}.");
         }
+
+        await Task.Delay(2000);
         
         // Close the browser
         await browser.CloseAsync();
-
-        await Task.Delay(2000);
     }
 }

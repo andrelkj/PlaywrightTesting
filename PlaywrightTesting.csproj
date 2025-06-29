@@ -5,7 +5,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <StartupObject>PlaywrightTesting.Exercises.FirstAssignment</StartupObject>
+        <StartupObject>PlaywrightTesting.Exercises.SecondAssignment</StartupObject>
 
     </PropertyGroup>
 

@@ -13,7 +13,7 @@ public class Locators
      * 4. Filter locators
      * 5. Chaining locators
      *
-     * Note: property provided to specify elements when using playwright methods refer to --> placeholder, aria-label or label text element values
+     * Note: property provided to specify elements when using playwright methods refers to --> placeholder, aria-label or label text element values
      * Important: whenever working with text be aware of dynamic and translated values, since the text reference can change depending on the location and language
      */
 

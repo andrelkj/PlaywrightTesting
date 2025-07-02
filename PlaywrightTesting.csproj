@@ -5,7 +5,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <StartupObject>PlaywrightTesting.Testcases.Tables</StartupObject>
+        <StartupObject>PlaywrightTesting.Testcases.ShadowRoot</StartupObject>
 
     </PropertyGroup>
 

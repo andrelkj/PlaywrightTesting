@@ -14,7 +14,6 @@ public class MouseOver
         var page = await browser.NewPageAsync();
 
         // Navigation
-
         await page.GotoAsync("https://www.way2automation.com",
             new PageGotoOptions { WaitUntil = WaitUntilState.NetworkIdle });
 

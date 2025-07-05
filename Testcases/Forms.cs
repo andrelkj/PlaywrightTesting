@@ -22,6 +22,14 @@ public class Forms
         var lastNameInput = page.GetByRole(AriaRole.Textbox, new PageGetByRoleOptions { Name = "Last name" });
         await lastNameInput.FillAsync("Kreutzer");
 
+        var submitButton = page.Locator("#main div").Filter(new() { HasText = "Example First name: Last name" })
+            .GetByRole(AriaRole.Button);
+        await submitButton.HoverAsync();
+
+        await Task.Delay(1000);
+
+        await submitButton.EvaluateAsync(@"(firstNameInput) => firstNameInput.style.border = '3px solid red'");
+
         await Task.Delay(2000);
 
         // Close the browser

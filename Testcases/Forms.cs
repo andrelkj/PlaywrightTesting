@@ -28,9 +28,18 @@ public class Forms
 
         await Task.Delay(1000);
 
-        await submitButton.EvaluateAsync(@"(firstNameInput) => firstNameInput.style.border = '3px solid red'");
+        await submitButton.EvaluateAsync(
+            @"(firstNameInput) => firstNameInput.style.border = '3px solid red'"); // execute javascript
 
         await Task.Delay(2000);
+
+        await submitButton.ScreenshotAsync(new LocatorScreenshotOptions
+            { Path = $"{Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent}/screenshots/element.png" });
+        await page.ScreenshotAsync(new PageScreenshotOptions
+        {
+            Path = $"{Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent}/screenshots/fullpage.png"
+        });
+        // Note: by default, screenshots are saved under /PlaywrightTesting/bin/Debug/net9.0/PlaywrightTesting folder, but it is possible to move it by accessing its parents
 
         // Close the browser
         await page.CloseAsync();

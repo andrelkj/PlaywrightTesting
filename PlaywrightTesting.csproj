@@ -5,13 +5,13 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <StartupObject>PlaywrightTesting.Testcases.Forms</StartupObject>
+        <StartupObject>PlaywrightTesting.Testcases.Download</StartupObject>
 
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.Playwright" Version="1.52.0" />
-      <PackageReference Include="Microsoft.Playwright.NUnit" Version="1.52.0" />
+        <PackageReference Include="Microsoft.Playwright" Version="1.52.0"/>
+        <PackageReference Include="Microsoft.Playwright.NUnit" Version="1.52.0"/>
     </ItemGroup>
 
 </Project>

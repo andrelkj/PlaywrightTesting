@@ -18,6 +18,14 @@ public class Dropdowns
             RecordVideoDir = $"{projectDirectory}/Videos/"
         });
 
+        // Enabling trace viewer
+        await context.Tracing.StartAsync(new TracingStartOptions
+        {
+            Screenshots = true,
+            Snapshots = true,
+            Sources = true
+        });
+
         var page = await context.NewPageAsync();
 
         // Navigation
@@ -53,6 +61,12 @@ public class Dropdowns
             Console.WriteLine(
                 $"This is option: {await langOption.InnerTextAsync()}, which has the code: {await langOption.GetAttributeAsync("lang")}.");
         }
+
+        // Stop tracing record
+        await context.Tracing.StopAsync(new TracingStopOptions
+        {
+            Path = "trace.zip" // the root destination path is kept since we'll need to run commands from the playwright.ps1 file to access the trace viewer 
+        });
 
         await Task.Delay(2000);
 

@@ -1,0 +1,18 @@
+<locators>
+    <LoginPage>
+        <username>
+            <LocatorType>ID</LocatorType>
+            <LocatorValue>username</LocatorValue>
+        </username>
+    </LoginPage>
+    <RegistrationPage>
+        <password>
+            <LocatorType>XPATH</LocatorType>
+            <LocatorValue>//*[@id='pass']</LocatorValue>
+        </password>
+        <loginButton>
+            <LocatorType>CSS</LocatorType>
+            <LocatorValue>#submit</LocatorValue>
+        </loginButton>
+    </RegistrationPage>
+</locators>

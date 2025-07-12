@@ -4,7 +4,7 @@ namespace PlaywrightTesting.Utilities;
 
 public class XMLLocatorsReader
 {
-    public static string GetLocatorValue(string pageName, string elementName, string locatorType)
+    public static string GetLocatorValue(string pageName, string elementName)
     {
         string locatorValue = null;
 
@@ -17,7 +17,7 @@ public class XMLLocatorsReader
         XmlElement root = xmlDoc.DocumentElement;
 
         // Define XPATH expressions that can access the specified element based on the given page and locator type
-        string xpath = $"/locators/{pageName}/{elementName}[LocatorType='{locatorType}']/LocatorValue";
+        string xpath = $"/locators/{pageName}/{elementName}";
 
         // Select the locator value node
         XmlNode locatorValueNode = root.SelectSingleNode(xpath);
@@ -32,7 +32,7 @@ public class XMLLocatorsReader
 
     static void Main(string[] args)
     {
-        Console.WriteLine(GetLocatorValue("LoginPage", "username", "ID"));
-        Console.WriteLine(GetLocatorValue("RegistrationPage", "password", "XPATH"));
+        Console.WriteLine(GetLocatorValue("LoginPage", "username"));
+        Console.WriteLine(GetLocatorValue("RegistrationPage", "password"));
     }
 }

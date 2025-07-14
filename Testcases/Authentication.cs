@@ -15,7 +15,7 @@ public class Authentication
      *
      * Note: the initial browser context can still be used for building pages, but it won't contain the authenticate state
      */
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         using var playwright = await Playwright.CreateAsync();

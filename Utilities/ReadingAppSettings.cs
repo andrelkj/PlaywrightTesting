@@ -4,11 +4,11 @@ namespace PlaywrightTesting.Utilities;
 
 public class ReadingAppSettings
 {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
         IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath($"{Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.FullName}/Resources")
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .AddJsonFile("appsettings.json", false, true)
             .Build();
 
         var browser = configuration["AppSettings:browser"];

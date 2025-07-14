@@ -50,17 +50,14 @@ public class SecondAssignment
         var match = Regex.Match(fullHtml, pattern);
 
         // Step 6: Return the captured sport name if found, otherwise use fallback
-        if (match.Success)
-        {
-            return match.Groups[1].Value; // Return the first captured group (sport name)
-        }
+        if (match.Success) return match.Groups[1].Value; // Return the first captured group (sport name)
 
         // Fallback: If regex fails, capitalize the first letter of the value
         return char.ToUpper(value[0]) + value.Substring(1);
     }
 
 
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         using var playwright = await Playwright.CreateAsync();
@@ -127,7 +124,7 @@ public class SecondAssignment
         Console.WriteLine("---------------------------------------------------------------------");
 
         // Iterate over all the checkboxes
-        for (int i = 0; i < await checkboxForm.CountAsync(); i++)
+        for (var i = 0; i < await checkboxForm.CountAsync(); i++)
         {
             var checkbox = checkboxForm.Nth(i);
             var sportName = await GetSportName(checkbox);

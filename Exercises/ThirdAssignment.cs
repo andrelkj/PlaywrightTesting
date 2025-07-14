@@ -4,7 +4,7 @@ namespace PlaywrightTesting.Exercises;
 
 public class ThirdAssignment
 {
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         using var playwright = await Playwright.CreateAsync();
         await using var browser =
@@ -18,23 +18,23 @@ public class ThirdAssignment
          * 3. Perform an action to move the slider to the left
          */
 
-         await page.GotoAsync("https://jqueryui.com/resources/demos/slider/default.html");
+        await page.GotoAsync("https://jqueryui.com/resources/demos/slider/default.html");
 
-         var slider = page.Locator("#slider > span");
-         var boundingBox = await slider.BoundingBoxAsync();
+        var slider = page.Locator("#slider > span");
+        var boundingBox = await slider.BoundingBoxAsync();
 
-         var startX = boundingBox.X + boundingBox.Width / 2;
-         var startY = boundingBox.Y + boundingBox.Height / 2;
+        var startX = boundingBox.X + boundingBox.Width / 2;
+        var startY = boundingBox.Y + boundingBox.Height / 2;
 
-         await page.Mouse.MoveAsync(startX + 500, startY);
-         await page.Mouse.DownAsync();
+        await page.Mouse.MoveAsync(startX + 500, startY);
+        await page.Mouse.DownAsync();
 
-         await Task.Delay(2000);
+        await Task.Delay(2000);
 
-         await page.Mouse.MoveAsync(startX + 200, startY);
-         await page.Mouse.DownAsync();
+        await page.Mouse.MoveAsync(startX + 200, startY);
+        await page.Mouse.DownAsync();
 
-         await Task.Delay(2000);
+        await Task.Delay(2000);
 
         /*
          * Exercise 2: Dropping draggable elements outside the draggable box

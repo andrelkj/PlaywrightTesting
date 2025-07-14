@@ -4,7 +4,7 @@ namespace PlaywrightTesting.Testcases;
 
 public class Checkboxes
 {
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         using var playwright = await Playwright.CreateAsync();
@@ -19,15 +19,15 @@ public class Checkboxes
         // Identify all the checkbox elements from one specific container based on the sibling header text value
         var checkboxes =
             page.Locator("h2.specialT:has-text('HTML Checkbox Form:') + div.display input[type='checkbox']");
-        
+
         // Actions
         Console.WriteLine($"Total number of checkboxes found: {await checkboxes.CountAsync()}");
-        
+
         Console.WriteLine("---------------------------------------------------------------------");
-        
-        for (int i = 0; i < await checkboxes.CountAsync(); i++)
+
+        for (var i = 0; i < await checkboxes.CountAsync(); i++)
         {
-            var checkbox = checkboxes.Nth(index: i);
+            var checkbox = checkboxes.Nth(i);
             Console.WriteLine($"Checkbox {i + 1} is checked: {await checkbox.IsCheckedAsync()}");
             await checkbox.CheckAsync();
 

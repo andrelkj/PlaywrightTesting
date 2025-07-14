@@ -4,7 +4,7 @@ namespace PlaywrightTesting.Testcases;
 
 public class Dropdowns
 {
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         using var playwright = await Playwright.CreateAsync();
@@ -57,10 +57,8 @@ public class Dropdowns
         Console.WriteLine("Iterating over all the language options:");
 
         foreach (var langOption in langOptions)
-        {
             Console.WriteLine(
                 $"This is option: {await langOption.InnerTextAsync()}, which has the code: {await langOption.GetAttributeAsync("lang")}.");
-        }
 
         // Stop tracing record
         await context.Tracing.StopAsync(new TracingStopOptions

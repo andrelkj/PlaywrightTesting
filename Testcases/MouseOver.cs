@@ -5,7 +5,7 @@ namespace PlaywrightTesting.Testcases;
 
 public class MouseOver
 {
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         using var playwright = await Playwright.CreateAsync();
@@ -18,10 +18,7 @@ public class MouseOver
             new PageGotoOptions { WaitUntil = WaitUntilState.NetworkIdle });
 
         // Actions
-        if (await page.IsVisibleAsync(".eicon-close"))
-        {
-            await page.Locator(".eicon-close").ClickAsync();
-        }
+        if (await page.IsVisibleAsync(".eicon-close")) await page.Locator(".eicon-close").ClickAsync();
 
         var allCoursesLink = page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = "All Courses" });
         await allCoursesLink.HoverAsync();

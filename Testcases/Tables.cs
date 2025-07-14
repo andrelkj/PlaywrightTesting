@@ -1,12 +1,11 @@
 using Microsoft.Playwright;
-using NUnit.Framework;
 using static Microsoft.Playwright.Assertions;
 
 namespace PlaywrightTesting.Testcases;
 
 public class Tables
 {
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         using var playwright = await Playwright.CreateAsync();
@@ -31,13 +30,10 @@ public class Tables
         Console.WriteLine("Table content validation passed! ✅");
 
         Console.WriteLine("---------------------------------------------------------------------");
-        
+
         // Iterating over table lines to print their content
         var allRowsContent = await row.AllTextContentsAsync();
-        
-        foreach (var rowContent in allRowsContent)
-        {
-            Console.WriteLine(rowContent);
-        }
+
+        foreach (var rowContent in allRowsContent) Console.WriteLine(rowContent);
     }
 }

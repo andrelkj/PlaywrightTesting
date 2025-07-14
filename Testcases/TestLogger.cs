@@ -1,3 +1,4 @@
+using System.Reflection;
 using log4net;
 using log4net.Config;
 
@@ -8,10 +9,10 @@ public class TestLogger
     // Initialize the logger
     private static readonly ILog Log = LogManager.GetLogger(typeof(TestLogger));
 
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
         // Access the repository and specify the logger path
-        var loggerRepository = LogManager.GetRepository(System.Reflection.Assembly.GetEntryAssembly());
+        var loggerRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
         XmlConfigurator.Configure(loggerRepository,
             new FileInfo(
                 $"{Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.FullName}/Resources/log4net.config"));

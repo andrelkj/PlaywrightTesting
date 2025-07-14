@@ -9,28 +9,25 @@ public class XMLLocatorsReader
         string locatorValue = null;
 
         // Load the XML file
-        XmlDocument xmlDoc = new XmlDocument();
+        var xmlDoc = new XmlDocument();
         xmlDoc.Load(
             $"{Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.FullName}/Resources/Locators.xml");
 
         // Get the root element
-        XmlElement root = xmlDoc.DocumentElement;
+        var root = xmlDoc.DocumentElement;
 
         // Define XPATH expressions that can access the specified element based on the given page and locator type
-        string xpath = $"/locators/{pageName}/{elementName}";
+        var xpath = $"/locators/{pageName}/{elementName}";
 
         // Select the locator value node
-        XmlNode locatorValueNode = root.SelectSingleNode(xpath);
+        var locatorValueNode = root.SelectSingleNode(xpath);
 
-        if (locatorValueNode != null)
-        {
-            locatorValue = locatorValueNode.InnerText;
-        }
+        if (locatorValueNode != null) locatorValue = locatorValueNode.InnerText;
 
         return locatorValue;
     }
 
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
         Console.WriteLine(GetLocatorValue("LoginPage", "username"));
         Console.WriteLine(GetLocatorValue("RegistrationPage", "password"));

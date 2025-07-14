@@ -5,7 +5,7 @@ namespace PlaywrightTesting.Testcases;
 
 public class APITesting
 {
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         using var playwright = await Playwright.CreateAsync();
 
@@ -54,7 +54,7 @@ public class APITesting
             });
         Console.WriteLine($"Status code: {putResponse.Status}");
         Console.WriteLine($"Response body: {await putResponse.TextAsync()}");
-        
+
         await Task.Delay(2000);
 
         Console.WriteLine("---------------------------------------------------------------");

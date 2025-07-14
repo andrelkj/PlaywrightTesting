@@ -7,7 +7,7 @@ public class Upload
     /*
      * To upload files the element needs to be of type="file" --> <input type="file" name="">
      */
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         using var playwright = await Playwright.CreateAsync();

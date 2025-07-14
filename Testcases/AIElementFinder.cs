@@ -18,27 +18,23 @@ internal static class AIElementFinder
             await page.QuerySelectorAllAsync("a, button, input, [aria-label], [role='button']");
 
         foreach (var element in elements)
-        {
             try
             {
                 var innerText = await element.InnerTextAsync();
                 var ariaLabel = await element.GetAttributeAsync("aria-label");
                 var altText = await element.GetAttributeAsync("alt");
 
-                if (!string.IsNullOrEmpty(innerText) &&
-                    innerText.Contains(description, StringComparison.OrdinalIgnoreCase) ||
-                    !string.IsNullOrEmpty(ariaLabel) &&
-                    ariaLabel.Contains(description, StringComparison.OrdinalIgnoreCase) ||
-                    !string.IsNullOrEmpty(altText) && altText.Contains(description, StringComparison.OrdinalIgnoreCase))
-                {
+                if ((!string.IsNullOrEmpty(innerText) &&
+                     innerText.Contains(description, StringComparison.OrdinalIgnoreCase)) ||
+                    (!string.IsNullOrEmpty(ariaLabel) &&
+                     ariaLabel.Contains(description, StringComparison.OrdinalIgnoreCase)) ||
+                    (!string.IsNullOrEmpty(altText) &&
+                     altText.Contains(description, StringComparison.OrdinalIgnoreCase)))
                     return element;
-                }
             }
             catch (PlaywrightException)
             {
-                continue;
             }
-        }
 
         throw new Exception($"Element with description '{description}' was not found.");
     }

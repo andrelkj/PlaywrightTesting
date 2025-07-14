@@ -5,7 +5,7 @@ namespace PlaywrightTesting.Testcases;
 
 public class Assertions
 {
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         using var playwright = await Playwright.CreateAsync();
@@ -33,7 +33,7 @@ public class Assertions
         var preSelectedSoccerCheckbox = page.Locator("input[value=soccer] ").Last;
         await Expect(preSelectedSoccerCheckbox).ToBeVisibleAsync();
         Console.WriteLine("Pre selected soccer checkbox visibility validation passed! ✅");
-        
+
         await Expect(preSelectedSoccerCheckbox).ToBeCheckedAsync();
         Console.WriteLine("Pre selected soccer checkbox state validation passed! ✅");
     }

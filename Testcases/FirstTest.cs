@@ -13,24 +13,26 @@ public class FirstTest
      * 3. Create an instance of a page to navigate and perform actions - `browser.NewPageAsync();`
      *
      * Note: Playwright supports chromium, firefox and webkit browser engines
-     * 
+     *
      * Once that it's done you'll be able to navigate, interact and validate e2e scenarios inside web pages.
      *
      * Important: to execute each step individually, it is required to define async methods and specify a Task type to it `static async Task Main(string[] args) {}`
      */
-    
-    static async Task Main(string[] args) // define the method as asynchronous and specify the type as Task 
+
+    private static async Task Main(string[] args) // define the method as asynchronous and specify the type as Task 
     {
         // Mandatory setup steps for pure playwright:
         // Create a playwright instance - this makes all playwright methods available
-        using var playwright = await Playwright.CreateAsync(); // use the await mthod to allow each method to be executed sequentially
-        
+        using var
+            playwright =
+                await Playwright.CreateAsync(); // use the await mthod to allow each method to be executed sequentially
+
         // Launch a new browser instance - Chromium, Firefox, Webkit
         var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
         {
             Headless = false // set to true to run the browser in headless mode,
         });
-        
+
         /*
          * // Define a new browser context - in this case to change the standard viewport size
         var context = await browser.NewContextAsync(new BrowserNewContextOptions
@@ -41,24 +43,24 @@ public class FirstTest
                 Height = 1080,
             }
         });
-        
+
         var page = await context.NewPageAsync(); // uses the new browser context with the changed viewport
         */
-        
+
         // Create a new browser tab
         var page = await browser.NewPageAsync();
         // await page.SetViewportSizeAsync(1920, 1080); // set the viewport size (width, height)
-        
+
         // Navigation and actions:
         // Navigate to a website
         await page.GotoAsync("https://playwright.dev/");
-        
+
         await Task.Delay(2000); // wait for 2 seconds
-        
+
         // Validate page title
         var title = await page.TitleAsync();
         Console.WriteLine(title);
-        
+
         // Close the browser
         await browser.CloseAsync();
     }

@@ -4,7 +4,7 @@ namespace PlaywrightTesting.Testcases;
 
 public class Forms
 {
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         using var playwright = await Playwright.CreateAsync();
@@ -22,7 +22,8 @@ public class Forms
         var lastNameInput = page.GetByRole(AriaRole.Textbox, new PageGetByRoleOptions { Name = "Last name" });
         await lastNameInput.FillAsync("Kreutzer");
 
-        var submitButton = page.Locator("#main div").Filter(new() { HasText = "Example First name: Last name" })
+        var submitButton = page.Locator("#main div").Filter(new LocatorFilterOptions
+                { HasText = "Example First name: Last name" })
             .GetByRole(AriaRole.Button);
         await submitButton.HoverAsync();
 

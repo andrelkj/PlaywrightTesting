@@ -18,7 +18,7 @@ public class FirstAssignment
      * 4. Print the popular cities listed
      */
 
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         using var playwright = await Playwright.CreateAsync();
@@ -41,23 +41,22 @@ public class FirstAssignment
         await page.GotoAsync("https://www.makemytrip.global/?cc=br");
 
         // Close modal
-        await page.Locator("section").Filter(new() { HasText = "Login now to get FLAT 12% OFF" }).Locator("span").First
+        await page.Locator("section").Filter(new LocatorFilterOptions { HasText = "Login now to get FLAT 12% OFF" })
+            .Locator("span").First
             .ClickAsync();
 
         await page.WaitForLoadStateAsync(LoadState.Load);
         await page.Locator(".searchCity").ClickAsync();
 
         await page.GetByText("POPULAR CITIES").IsVisibleAsync();
-        
+
         var popularCities = page.GetByRole(AriaRole.Listbox).GetByRole(AriaRole.Option).Locator("p");
 
-        for (int i = 0; i < await popularCities.CountAsync(); i++)
-        {
+        for (var i = 0; i < await popularCities.CountAsync(); i++)
             Console.WriteLine($"City name: {await popularCities.Nth(i).InnerTextAsync()}");
-        }
 
         await Task.Delay(2000);
-        
+
         // Close the browser
         await browser.CloseAsync();
     }

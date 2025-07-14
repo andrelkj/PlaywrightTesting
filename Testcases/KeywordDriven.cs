@@ -6,8 +6,8 @@ namespace PlaywrightTesting.Testcases;
 
 public class KeywordDriven
 {
-    static IBrowser browser;
-    static IPage page;
+    private static IBrowser browser;
+    private static IPage page;
 
     public static async Task Click(string pageName, string locatorName)
     {
@@ -19,24 +19,20 @@ public class KeywordDriven
         await page.Locator(XMLLocatorsReader.GetLocatorValue(pageName, locatorName)).FillAsync(value);
     }
 
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath($"{Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.FullName}/Resources")
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .AddJsonFile("appsettings.json", false, true)
             .Build();
 
         using var playwright = await Playwright.CreateAsync();
 
         if (configuration["AppSettings:browser"].Equals("chrome"))
-        {
             browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
-        }
         else if (configuration["AppSettings:browser"].Equals("firefox"))
-        {
             browser = await playwright.Firefox.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
-        }
 
         page = await browser.NewPageAsync();
 

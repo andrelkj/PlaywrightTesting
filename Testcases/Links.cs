@@ -4,7 +4,7 @@ namespace PlaywrightTesting.Testcases;
 
 public class Links
 {
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         using var playwright = await Playwright.CreateAsync();
@@ -17,20 +17,23 @@ public class Links
 
         // Defining variables
         // Chaining locators allow more specificity without losing the readability
-        var otherProjects = page.GetByRole(AriaRole.Navigation, new PageGetByRoleOptions { Name = "Other projects" }); // using the role
-        var links = otherProjects.Locator("a"); // this will look for the links inside the other projects navigation block only
+        var otherProjects =
+            page.GetByRole(AriaRole.Navigation, new PageGetByRoleOptions { Name = "Other projects" }); // using the role
+        var links = otherProjects
+            .Locator("a"); // this will look for the links inside the other projects navigation block only
 
         Console.WriteLine("---------------------------------------------------------------------");
-        
+
         // Actions
         Console.WriteLine($"Total number of links found: {await links.CountAsync()}");
-        
+
         Console.WriteLine("---------------------------------------------------------------------");
 
-        for (int i = 0; i < await links.CountAsync(); i++)
+        for (var i = 0; i < await links.CountAsync(); i++)
         {
             var link = links.Nth(i);
-            Console.WriteLine($"Link: {await link.InnerTextAsync()} has the url: {await link.GetAttributeAsync("href")}");
+            Console.WriteLine(
+                $"Link: {await link.InnerTextAsync()} has the url: {await link.GetAttributeAsync("href")}");
         }
-    }   
+    }
 }

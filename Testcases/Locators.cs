@@ -17,7 +17,7 @@ public class Locators
      * Important: whenever working with text be aware of dynamic and translated values, since the text reference can change depending on the location and language
      */
 
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // Setup
         using var playwright = await Playwright.CreateAsync();
@@ -47,17 +47,17 @@ public class Locators
 
         // Password textbox
         var labelPassword = page.GetByLabel("Enter your password", new PageGetByLabelOptions { Exact = true });
-        
+
         // Message
         var textError = page.GetByText("Wrong password. Try again or click Forgot password to reset it.");
 
         // Actions
         await labelEmail.FillAsync("info@way2automation.com");
         await filterBtnNext.ClickAsync();
-        
+
         await labelPassword.FillAsync("1234567890", new LocatorFillOptions { Timeout = 3000 });
         await filterBtnNext.Last.ClickAsync();
-        
+
         // Validation
         Console.WriteLine(await textError.InnerTextAsync());
 

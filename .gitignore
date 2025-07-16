@@ -64,3 +64,4 @@ yarn-error.log*
 # Playwright auth state
 /playwright/.auth/
 /Downloads/
+/Reports/

@@ -15,6 +15,9 @@ browser automation, advanced locator strategies, mouse interactions, keyword-dri
 - **Testing Library**: Microsoft Playwright
 - **Configuration**: Microsoft.Extensions.Configuration
 - **Test Runner**: NUnit 3x-4x with VsTest
+- **Reporting**: ExtentReports 4.0
+- **CI/CD**: GitHub Actions / Azure DevOps Pipelines
+- **Documentation**: XML Documentation and Markdown
 
 ## Key Concepts Demonstrated
 
@@ -93,20 +96,28 @@ The project demonstrates multiple approaches to element identification:
 - **Customized Logging**: Detailed step-by-step test execution logging
 - **Report Customization**: Branded and categorized test reports
 
+### 11. NUnit Framework Integration
+
+- **Test Attributes**: Proper usage of NUnit attributes for test organization
+- **Test Context**: Leveraging TestContext for dynamic test data
+- **Setup/Teardown**: Implementing proper test initialization and cleanup
+- **Assertions**: Using NUnit's rich assertion library
+- **Categories**: Organizing tests with categorical attributes
+
 ## Project Structure
 
 ```
 PlaywrightTesting/
-├── Exercises/          # Practice exercises and assignments
-├── Resources/          # Configuration files and test data
-│ ├── appsettings.json  # Application configuration
-│ └── Locators.xml      # Element locators storage
-├── Reports/            # Test execution reports and artifacts
-│ ├── Screenshots/      # Captured test failure screenshots
-│ ├── Videos/           # Test execution recordings
-│ └── ExtentReports/    # HTML test reports
-├── Testcases/          # Main test scenarios
-└── Utilities/          # Helper classes and utilities
+├── Exercises/                  # Practice exercises and assignments
+├── Resources/                 # Configuration files and test data
+│   ├── appsettings.json      # Application configuration
+│   └── Locators.xml          # Element locators storage
+├── Reports/                   # Test execution reports and artifacts
+│   ├── Screenshots/          # Captured test failure screenshots
+│   ├── Videos/               # Test execution recordings
+│   └── ExtentReports/        # HTML test reports
+├── Testcases/                # Main test scenarios
+└── Utilities/                # Helper classes and utilities
 ```
 
 ## Featured Test Scenarios
@@ -185,8 +196,25 @@ PlaywrightTesting/
 ## Getting Started
 
 1. Ensure .NET 9.0 SDK is installed
-2. Restore NuGet packages: `dotnet restore`
-3. Install Playwright browsers: `pwsh bin/Debug/net9.0/playwright.ps1 install`
-4. Run individual test files or use your preferred test runner
+2. Clone the repository: `git clone https://github.com/yourusername/PlaywrightTesting.git`
+3. Navigate to the project directory: `cd PlaywrightTesting`
+4. Restore NuGet packages: `dotnet restore`
+5. Install Playwright browsers: `pwsh bin/Debug/net9.0/playwright.ps1 install`
+6. Build the solution: `dotnet build`
+7. Run tests: `dotnet test`
+8. View test reports in the Reports/ExtentReports directory
+
+### Running Specific Test Categories
+
+```bash
+# Run only UI tests
+dotnet test --filter "Category=UI"
+
+# Run smoke tests
+dotnet test --filter "Category=Smoke"
+
+# Run specific test
+dotnet test --filter "Name=LoginTest"
+```
 
 This project serves as a comprehensive learning resource for web automation testing concepts using Playwright and C#.
